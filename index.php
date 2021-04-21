@@ -3,5 +3,5 @@ require('model.php');
 
 $req = getAdherents();
 
-require('affichageAccueil.php');
+require('pageReservation.php');
 ?>
