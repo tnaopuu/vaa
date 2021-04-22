@@ -18,44 +18,43 @@
     </head>
         
     <body>
-        <h1>Choix adhérents</h1>
+        <h1>Réservation</h1>
 
-            <div class="container"> 
-                <div class="row-2">
-                    <div class="col-2">
-                        <p>DATE</p>
-                        <input type="date" name="date">
+             
+                <div class="row row-cols-7 align-items-center">
+                    <div class="col">
+                        <strong>DATE : </strong>
+                        
+                        <?php 
+                            include "listeJours.php";
+                        ?>
+
                     </div>
-                </div>
-            </div>
-
-            <div class="container"> 
-                <div class="row">
-                    <div class="col-2">
+                    <div class="col">
                         <strong>1 - FA'AHORO</strong>
                     </div>
-                    <div class="col-2">
+                    <div class="col">
                         <strong>2 - MONO FA'AHORO</strong>
                     </div>
-                    <div class="col-2">
+                    <div class="col">
                         <strong>3 - TARE</strong>
                     </div>
-                    <div class="col-2">
+                    <div class="col">
                         <strong>4 - TURAI</strong>
                     </div>
-                    <div class="col-2">
+                    <div class="col">
                         <strong>5 - MONO PEPERU</strong>
                     </div>
-                    <div class="col-2">
+                    <div class="col">
                         <strong>6 - PEPERU</strong>
                     </div>
                 </div>
-            </div>
+            
 
        
-
+    
         <?php
-        while ($donnees = $req->fetch()) {
+        /*while ($donnees = $req->fetch()) {
         ?>
         <div class="news">
             <h3>
@@ -66,7 +65,7 @@
         <?php
         }
         $req->closeCursor();
-        ?>
+        */?>
 
         </body>
 </html>
