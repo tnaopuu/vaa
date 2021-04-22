@@ -1,9 +1,10 @@
 
-<div data-role = "page" id = "pageaccueil"  >
+<div data-role = "page" id = "pageaccueil" >
+
 <?php
     include "vues/entetepage.html";
 ?>
-    <div data-role = "content"> 
+    <div data-role = "content" > 
        <?php
             include  "vues/logo.html";
         ?>

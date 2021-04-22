@@ -1,4 +1,5 @@
-<div data-role = "page" id = "pageconnexion">
+<div data-role = "page" id = "pageconnexion" class="pagecnx">
+
 <?php
 include_once "vues/entetepage.html";
 ?>
