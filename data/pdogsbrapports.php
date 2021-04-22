@@ -65,42 +65,6 @@ class PdoGsbRapports{
                 else              
                     return NULL;
 	}
-        public function getLesVisitesUneDate($login, $mdp, $date){
-                $req = "select rapport.id as idRapport ,medecin.nom as nomMedecin, medecin.prenom as prenomMedecin ";
-                $req .= " from visiteur, rapport, medecin where visiteur.login = :login and visiteur.mdp = :mdp";
-                $req.= " and rapport.idVisiteur = visiteur.id ";
-                $req .=" and rapport.idMedecin = medecin.id and rapport.date = :date ";
-                $stm = self::$monPdo->prepare($req);
-                $stm->bindParam(':login', $login);
-                $stm->bindParam(':mdp', $mdp);
-                $stm->bindParam(':date', $date);
-                $stm->execute();
-                $lesLignes = $stm->fetchall();
-                return $lesLignes;
-         }
-         public function getLeRapport($idRapport){
-                $req = "select * from rapport where id = :idRapport" ; 
-                $stm = self::$monPdo->prepare($req);
-                $stm->bindParam(':idRapport', $idRapport);
-                $stm->execute();
-                $laLigne = $stm->fetch();
-                return $laLigne;
-         }
-        public function majRapport($idRapport,$bilan,$motif){
-                $req = "update rapport set bilan = :bilan ,motif = :motif where id = :idRapport";
-                $stm = self::$monPdo->prepare($req);
-                $stm->bindParam(':idRapport', $idRapport);
-                $stm->bindParam(':motif', $motif); 
-                $stm->bindParam(':bilan', $bilan); 
-                return $stm->execute();
-                 
-        } 
-        
-       
-        
-        
-        
-        
 }   // fin classe
 ?>
 
