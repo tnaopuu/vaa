@@ -6,9 +6,9 @@
     $pdo = PdoGsbRapports::getPdo();
     $visiteur = $pdo->getLeVisiteur($login,$mdp);// retourne le visiteur
     if($visiteur != NULL){
-        $_SESSION['visiteur'] = $visiteur ;
-        $_SESSION['visiteur']['mdp'] = $mdp;
-        $_SESSION['visiteur']['login'] = $login;
+        $_SESSION['membre'] = $visiteur ;
+        $_SESSION['membre']['mdp'] = $mdp;
+        $_SESSION['membre']['login'] = $login;
     }
     echo json_encode($visiteur);
 ?>

@@ -17,7 +17,7 @@
 class PdoGsbRapports{   		
       	 /*--------------------Version locale---------------------------------------- */
       private static $serveur='mysql:host=localhost';
-      private static $bdd='dbname=gsbrapports';   		
+      private static $bdd='dbname=vaa';   		
       private static $user='root' ;    		
       private static $mdp='' ;
       private static $monPdo;
@@ -54,7 +54,7 @@ class PdoGsbRapports{
  * @return le tableau associatif ou NULL
 */
 	public function getLeVisiteur($login, $mdp){
-		$req = "select id, nom, prenom from visiteur where login = :login and mdp = :mdp";
+		$req = "select id, nom, prenom from membre where login = :login and mdp = :mdp";
                 $stm = self::$monPdo->prepare($req);
                 $stm->bindParam(':login', $login);
                 $stm->bindParam(':mdp', $mdp);
