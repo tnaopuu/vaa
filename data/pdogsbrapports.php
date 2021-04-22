@@ -62,7 +62,7 @@ class PdoGsbRapports{
         	$laLigne = $stm->fetch();
                 if(count($laLigne)>1)
                    return $laLigne;
-                else              
+                else
                     return NULL;
 	}
 }   // fin classe
