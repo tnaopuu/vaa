@@ -30,9 +30,17 @@
                         ?>
 
                     </div>
+
                     <div class="col">
                         <strong>1 - FA'AHORO</strong>
-                        <p id="1"><?php require_once "listeAdhe.php" ?></p>
+                            <?php                                 
+                                require("listeAdhe.php");
+                                $req = getAdherentPlace();                                                                
+                                foreach ($req as $data){
+                                    echo '<p>' . $data['nom'] . '</p>';
+                                }                                                            
+                                $req->closeCursor();
+                            ?>                        
                     </div>
                     <div class="col">
                         <strong>2 - MONO FA'AHORO</strong>
