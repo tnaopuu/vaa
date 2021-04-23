@@ -14,7 +14,7 @@
  * @link       http://www.php.net/manual/fr/book.pdo.php
  */
 
-class PdoGsbRapports{
+class PdoVaa{
       	 /*--------------------Version locale---------------------------------------- */
       private static $serveur='mysql:host=localhost';
       private static $bdd='dbname=vaa';
@@ -37,13 +37,13 @@ class PdoGsbRapports{
 /**
  * Fonction statique qui crée l'unique instance de la classe
  
- * Appel : $instancePdoGsbRapports = PdoGsbRapports::getPdo();
+ * Appel : $instancePdoVaa = PdoVaa::getPdo();
  
- * @return l'unique objet de la classe PdoGsbRapports
+ * @return l'unique objet de la classe PdoVaa
  */
 	public  static function getPdo(){
 		if(self::$monPdoVaa == null){
-			self::$monPdoVaa = new PdoGsbRapports();
+			self::$monPdoVaa = new PdoVaa();
 		}
 		return self::$monPdoVaa;  
 	}

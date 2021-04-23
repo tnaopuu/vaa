@@ -1,9 +1,9 @@
 <?php
     session_start();
-    require_once '../data/pdogsbrapports.php';   
+    require_once '../data/PdoVaa.php';   
     $mdp = $_REQUEST['mdp'];
     $login = $_REQUEST['login'];
-    $pdo = PdoGsbRapports::getPdo();
+    $pdo = PdoVaa::getPdo();
     $visiteur = $pdo->getLeVisiteur($login,$mdp);// retourne le visiteur
     if($visiteur != NULL){
         $_SESSION['membre'] = $visiteur ;
