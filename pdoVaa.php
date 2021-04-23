@@ -14,7 +14,7 @@
             * pour toutes les méthodes de la classe
          */				
             private function __construct(){
-                self::$monPdo = new PDO(self::$serveur.';'.self::$bdd.';'.self::'utf8', self::$user, self::$mdp); 
+                self::$monPdo = new PDO(self::$serveur.';'.self::$bdd, self::$user, self::$mdp); 
                 self::$monPdo->query("SET CHARACTER SET utf8");
             }
         
@@ -40,29 +40,12 @@
              * Retourne les informations dans la base de donnees vaa
              */
 
-                public function getAdherents(){                    
-
-                    $req = "select id, nom, prenom from membre"
-
-                    return $req; 
+                public function getJours(){            
+                    $req = "select id, jours from jours";
+                    $stm = self::$monPdo->prepare($req);
+                    $stm->execute();
+                    $jour = $stm->fecth();
+                    return $jour; 
                 }
-
-        function getJours()
-        {
-            try
-            {
-                $bdd = new PDO('mysql:host=localhost;dbname=vaa;charset=utf8', 'root', 'root');
-            }
-            
-            catch(Exception $e)
-            {
-                die('Erreur : '.$e->getMessage());
-            }
-
-            $req = $bdd->query('SELECT id, jours FROM jours');
-
-            return $req; 
-        }
-
     }
 ?>
