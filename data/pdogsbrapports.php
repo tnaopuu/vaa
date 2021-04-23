@@ -7,25 +7,25 @@
  * Les attributs sont tous statiques,
  * les 4 premiers pour la connexion
  * $monPdo de type PDO 
- * $monPdoGsbRapports qui contiendra l'unique instance de la classe
+ * $monPdoVaa qui contiendra l'unique instance de la classe
  * @package default
  * @author Cheri Bibi Rev MB
  * @version    2.0 Nov2020
  * @link       http://www.php.net/manual/fr/book.pdo.php
  */
 
-class PdoGsbRapports{   		
+class PdoGsbRapports{
       	 /*--------------------Version locale---------------------------------------- */
       private static $serveur='mysql:host=localhost';
-      private static $bdd='dbname=vaa';   		
-      private static $user='root' ;    		
+      private static $bdd='dbname=vaa';
+      private static $user='root' ;
       private static $mdp='' ;
       private static $monPdo;
-      private static $monPdoGsbRapports = null;
+      private static $monPdoVaa = null;
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
- */				
+ */
 	private function __construct(){
             self::$monPdo = new PDO(self::$serveur.';'.self::$bdd, self::$user, self::$mdp); 
             self::$monPdo->query("SET CHARACTER SET utf8");
@@ -42,10 +42,10 @@ class PdoGsbRapports{
  * @return l'unique objet de la classe PdoGsbRapports
  */
 	public  static function getPdo(){
-		if(self::$monPdoGsbRapports == null){
-			self::$monPdoGsbRapports = new PdoGsbRapports();
+		if(self::$monPdoVaa == null){
+			self::$monPdoVaa = new PdoGsbRapports();
 		}
-		return self::$monPdoGsbRapports;  
+		return self::$monPdoVaa;  
 	}
 /**
  * Retourne les informations du visiteur

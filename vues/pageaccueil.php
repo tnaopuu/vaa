@@ -1,5 +1,5 @@
 
-<div data-role = "page" id = "pageaccueil" >
+<div data-role = "page" id = "pageaccueil" class="accueil">
 
 <?php
     include "vues/entetepage.html";
