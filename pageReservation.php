@@ -35,11 +35,9 @@
                         <strong>1 - FA'AHORO</strong>
                             <?php                                 
                                 require("listeAdhe.php");
-                                $req = getAdherentPlace();                                                                
-                                foreach ($req as $data){
-                                    echo '<p>' . $data['nom'] . '</p>';
-                                }                                                            
-                                $req->closeCursor();
+                                $req = getAdherentPlace();
+                                echo '<p>'. $req['nom'] .'</p>';
+                                //$req->closeCursor();
                             ?>                        
                     </div>
                     <div class="col">
