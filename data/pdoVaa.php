@@ -37,14 +37,23 @@
                     }
 
             /**
-             * Retourne les informations dans la base de donnees vaa
+             * Retourne les informations de la base de donnees vaa
              */
 
                 public function getJours(){            
                     $req = "select id, jours from jours";
                     $stm = self::$monPdo->prepare($req);
+                    return $stm->execute();                    
+                }
+
+                public function getAdherent($idMembre){
+                    $req = "select id, nom, prenom from membre";
+                    $req .= "where id = :idMembre";
+                    $stm = self::$monPdo->prepare($req);
+                    $stm->bindParam(':idMembre', $idMembre);
                     $stm->execute();
-                    return $stm->fecth();                    
+                    $laLigne = $stm->fetch();
+                    return $laLigne; 
                 }
     }
 ?>

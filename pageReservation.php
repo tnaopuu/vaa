@@ -34,10 +34,7 @@
                     <div class="col">
                         <strong>1 - FA'AHORO</strong>
                             <?php                                 
-                                require("listeAdhe.php");
-                                $req = getAdherentPlace();
-                                echo '<p>'. $req['nom'] .'</p>';
-                                //$req->closeCursor();
+                                require_once "listeAdhe.php";
                             ?>                        
                     </div>
                     <div class="col">
