@@ -44,8 +44,7 @@
                     $req = "select id, jours from jours";
                     $stm = self::$monPdo->prepare($req);
                     $stm->execute();
-                    $jour = $stm->fecth();
-                    return $jour; 
+                    return $stm->fecth();                    
                 }
     }
 ?>
