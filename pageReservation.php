@@ -54,7 +54,7 @@
                         <strong>1 - FA'AHORO</strong>
                             <?php                                 
                                 //require_once "listeAdhe.php";
-                                $reqA = $bdd->query("select id, nom, prenom from membre");
+                                $reqA = $bdd->query("select id, nom, prenom from membre, reservation where membre.membre = reservation.membre and reservation.jour = 1");
 
                                 echo '<td>';
                                 //echo '<p>' . $reqA['nom'] . ' ' . $reqA['prenom'] . '</p>';
