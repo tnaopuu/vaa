@@ -1,13 +1,24 @@
 <?php
-    require('modele.php');
+    try
+    {
+        $bdd = new PDO('mysql:host=localhost;dbname=vaa;charset=utf8', 'root', 'root');
+    }
     
-    $req = getJours();
+    catch(Exception $e)
+    {
+        die('Erreur : '.$e->getMessage());
+    }
+
+    $req = $bdd->query('SELECT id, jours FROM jours');
     
     echo '<td>
             <select name="jours" id="jour" class="input-sm">';
             foreach ($req as $data){
-                echo '<option value="' . $data['id'] . '">' . $data['jours'] . '</option>';
+                $idJ = $data['id'];
+                echo '<option value="' . $idJ . '">' . $data['jours'] . '</option>';
             }
     echo '</select>';
-    $req->closeCursor();
+   
+    //$req->closeCursor();
+    return $idJ;
 ?>

@@ -26,7 +26,26 @@
                         <strong>DATE : </strong>
                         
                         <?php 
-                            require_once "listeJours.php";
+                            //require_once "listeJours.php";
+                            try
+                                {
+                                    $bdd = new PDO('mysql:host=localhost;dbname=vaa;charset=utf8', 'root', 'root');
+                                }
+                                
+                                catch(Exception $e)
+                                {
+                                    die('Erreur : '.$e->getMessage());
+                                }
+
+                                $req = $bdd->query('SELECT id, jours FROM jours');
+                                
+                                echo '<td>
+                                        <select name="jours" id="jour" class="input-sm">';
+                                        foreach ($req as $data){
+                                            $idJ = $data['id'];
+                                            echo '<option value="' . $idJ . '">' . $data['jours'] . '</option>';
+                                        }
+                                echo '</select>';
                         ?>
 
                     </div>
@@ -34,7 +53,18 @@
                     <div class="col">
                         <strong>1 - FA'AHORO</strong>
                             <?php                                 
-                                require_once "listeAdhe.php";
+                                //require_once "listeAdhe.php";
+                                $reqA = $bdd->query("select id, nom, prenom from membre");
+
+                                echo '<td>';
+                                //echo '<p>' . $reqA['nom'] . ' ' . $reqA['prenom'] . '</p>';
+                                foreach ($reqA as $data){
+                                        
+                                    echo '<p>' . $data['nom'] . ' ' . $data['prenom'] . '</p>';
+                                        
+                                }
+                                echo '</td>';
+                                $reqA->closeCursor();
                             ?>                        
                     </div>
                     <div class="col">
