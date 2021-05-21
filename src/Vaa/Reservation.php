@@ -9,72 +9,41 @@ class Reservation{
     private $adhe;
     
 
-    public function __construct($name ="", $size="", $energy=""){
-        $this->name = $name;
-        $this->size = $size;
-        $this->energy = $energy;
+    public function __construct($jourPer ="", $plcVaa="", $adhe=""){
+        $this->jourPer = $jourPer;
+        $this->plcVaa = $plcVaa;
+        $this->adhe = $adhe;
     }
 
     public function getId(): string {
         return $this->id;
     }
 
-    public function getName(): string {
-        return $this->name;
+    public function getJourPer(): string {
+        return $this->jourPer;
     }
 
-    public function getSize (): int {
-        return $this->size;
+    public function getPlcVaa (): string {
+        return $this->plcVaa;
     }
 
-    public function getEnergy (): int {
-        return $this->energy;
+    public function getAdhe (): string {
+        return $this->adhe;
     }
 
-    public function getLipide (): int {
-        return $this->lipide;
-    }
-
-    public function getGlucide (): int {
-        return $this->glucide;
-    }
-
-    public function getProtide (): int {
-        return $this->protide;
-    }
-
-    public function getType (): int {
-        return $this->type;
-    }
     public function setId (string $id) {
         $this->id = $id;
     }
-
-    public function setName (string $name) {
-        $this->name = $name;
-    }
-
-    public function setSize (int $size) {
-        $this->size = $size;
-    }
-
-    public function setEnergy (int $energy) {
-        $this->energy = $energy;
-    }
      
-    public function setGlucide (int $glucide) {
-        $this->glucide = $glucide;
+    public function setJourPer (string $jourPer) {
+        $this->jourPer = $jourPer;
     }
 
-    public function setLipide (int $lipide) {
-        $this->lipide = $lipide;
+    public function setPlcVaa (string $plcVaa) {
+        $this->plcVaa = $plcVaa;
     }
 
-    public function setProtide (int $protide) {
-        $this->protide = $protide;
-    }
-
-    public function setType (int $type) {
-        $this->type = $type;
+    public function setAdhe (string $adhe) {
+        $this->adhe = $adhe;
     }
 }

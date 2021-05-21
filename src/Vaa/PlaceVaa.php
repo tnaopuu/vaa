@@ -10,7 +10,7 @@ class PlaceVaa{
         $this->placeVaa = $placeVaa;        
     }
 
-    public function getId(): int {
+    public function getId(): string {
         return $this->id;
     }
 
@@ -18,7 +18,7 @@ class PlaceVaa{
         return $this->placeVaa;
     }
 
-    public function setId (int $id) {
+    public function setId (string $id) {
         $this->id = $id;
     }
 

@@ -13,7 +13,7 @@ class Adherent{
         $this->lastname = $lastname;
     }
 
-    public function getId(): int {
+    public function getId(): string {
         return $this->id;
     }
 
@@ -25,7 +25,7 @@ class Adherent{
         return $this->lastname;
     }
 
-    public function setId (int $id) {
+    public function setId (string $id) {
         $this->id = $id;
     }
 

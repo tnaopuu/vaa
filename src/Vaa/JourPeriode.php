@@ -10,7 +10,7 @@ class JourPeriode{
         $this->jourPeriode = $jourPeriode;        
     }
 
-    public function getId(): int {
+    public function getId(): string {
         return $this->id;
     }
 
@@ -18,7 +18,7 @@ class JourPeriode{
         return $this->jourPeriode;
     }
 
-    public function setId (int $id) {
+    public function setId (string $id) {
         $this->id = $id;
     }
 
