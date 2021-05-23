@@ -25,12 +25,6 @@ function get_pdo (): PDO {
     ]);
 }
 
-function h(string $value): string {
-    if ($value === null) {
-        return '';
-    }
-    return htmlentities($value);
-}
 
 function render(string $view, $parameters = []) {
     extract($parameters);
