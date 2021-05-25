@@ -53,7 +53,7 @@
       <div class="form-group">
         <label for="choixJourPeriode">Choix du jour</label>
         <select class="form-control" id="choixJourPeriode" name="choixJourPeriode">
-          <option value="">Tous</option>
+          <option value=""> --- </option>
           <?php 
           foreach ($joursPeriode as $key => $value): 
         
@@ -70,13 +70,14 @@
         ?>
             </select>  
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Afficher</button>
     </form>
-  
+    
     <table>
+    
         <?php for ($i = 0; $i < sizeof($reservations); $i++): ?>
             <tr>
-                <td><?= $reservations[$i]->getLibellePlaceVaa() . " : " .$reservations[$i]->getNom_PrenomAdhe()?></td>
+                <td><?php if($jourPeriode != ""){ echo $reservations[$i]->getLibellePlaceVaa() . " : " .$reservations[$i]->getNom_PrenomAdhe();} else{ echo "";}?></td>
             </tr>
         <?php endfor; ?>
     </table>

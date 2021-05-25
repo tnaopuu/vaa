@@ -17,14 +17,22 @@ class ManagerReservation {
      * @throws \Exception
      */
     public function find (int $id): Reservation {
-        $statement = $this->pdo->query("SELECT * FROM reservation WHERE idJourPer = $id LIMIT 1");
+        $statement = $this->pdo->query("SELECT * FROM reservation join `placevaa` on placevaa.idPlace=reservation.libellePlaceVaa join `adherent` on adherent.idAdhe=reservation.nom_prenomAdhe WHERE idJourPer = $id LIMIT 1");
         if($row = $statement->fetch()) {
             
             //appel du constructeur paramétré
-            $reservation = new Reservation(htmlentities($row['libellePlaceVaa']),htmlentities($row['nom_prenomAdhe']));
+            $reservation = new Reservation(htmlentities($row['nom_prenomAdhe']));
             
             //positionnement de l'id
             $reservation->setId(htmlentities($row['idJourPer']));
+
+            $reservation->setLibellePlaceVaa(htmlentities($row['libellePlace']));
+            
+            if($reservation->getNom_PrenomAdhe () === NULL){
+                $reservation->setNom_PrenomAdhe(htmlentities($row['libellePlace']));
+            }else{
+                $reservation->setNom_PrenomAdhe(htmlentities($row['nomAdhe']));
+            }        
 
         }
         if ($row === false) {
@@ -44,7 +52,7 @@ class ManagerReservation {
      */
     public function getAll($restriction='WHERE 1')
     {
-        $query = "select * from `reservation` ".$restriction;
+        $query = "select * from `reservation` join `placevaa` on placevaa.idPlace=reservation.libellePlaceVaa join `adherent` on adherent.idAdhe=reservation.nom_prenomAdhe ".$restriction;
         $reservationsList = Array();
 
         //execution de la requete
@@ -61,10 +69,18 @@ class ManagerReservation {
         while ($row = $result->fetch())
         {
             //appel du constructeur paramétré
-            $reservation = new Reservation(htmlentities($row['libellePlaceVaa']),htmlentities($row['nom_prenomAdhe']));
+            $reservation = new Reservation(htmlentities($row['nom_prenomAdhe']));
             //positionnement de l'id
             $reservation->setId(htmlentities($row['idJourPer']));
             //ajout de l'objet à la fin du tableau
+            $reservation->setLibellePlaceVaa(htmlentities($row['libellePlace']));
+            
+            if($reservation->getNom_PrenomAdhe () === NULL){
+                $reservation->setNom_PrenomAdhe(htmlentities($row['libellePlace']));
+            }else{
+                $reservation->setNom_PrenomAdhe(htmlentities($row['nomAdhe']));
+            }              
+
             $reservationsList[] = $reservation;
         }
         //retourne le tableau d'objets 'critere'
@@ -76,7 +92,7 @@ class ManagerReservation {
      */
 
     public function getJourPeriode(){
-        $query = "select distinct(jourperiode.idJourPer), libelleJourPer from jourperiode inner join reservation ON reservation.idJourPer=jourperiode.idJourPer order by libelleJourPer";
+        $query = "select distinct(jourperiode.idJourPer), libelleJourPer from jourperiode inner join reservation ON reservation.idJourPer=jourperiode.idJourPer";
         $joursPeriodeList = Array();
 
         //execution de la requete

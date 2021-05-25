@@ -8,8 +8,7 @@ class Reservation{
     private $nom_prenomAdhe;
     
 
-    public function __construct($libellePlaceVaa ="", $nom_prenomAdhe=""){
-        $this->libellePlaceVaa = $libellePlaceVaa;
+    public function __construct($nom_prenomAdhe=""){
         $this->nom_prenomAdhe = $nom_prenomAdhe;
     }
 
