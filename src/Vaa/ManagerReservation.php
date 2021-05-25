@@ -39,12 +39,13 @@ class ManagerReservation {
     /**
      * Sélectionne une réservation dans la base en sélectionnant comme critère le jour de la semaine.
      * 
+     * Si aucun paramètre n'est précisé, la valeur par défaut du paramètre 'WHERE 1' permet de ne rien afficher.
      * Méthode générique de SELECT qui renvoie un tableau de critere correspondant au critère de sélection spécifié.
      * 
      * @param string Chaîne de caractère devant être une restriction SQL valide.
      * @return array Renvoie un tableau d'objet(s) critere.
      */
-    public function getAll($restriction)
+    public function getAll($restriction='WHERE 1')
     {
         $query = "select * from `reservation` join `placevaa` on placevaa.idPlace=reservation.idPlaceVaa join `adherent` on adherent.idAdhe=reservation.idAdhe ".$restriction;
         $reservationsList = Array();
