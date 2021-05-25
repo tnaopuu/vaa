@@ -6,17 +6,17 @@
 
     $pdo = get_pdo();
     $managerReservation = new Vaa\ManagerReservation($pdo); 
-
+    //récupération des jours 
     $joursPeriode = $managerReservation->getJourPeriode();
 
     $jourPeriode="";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      //allergies
+      //les jours de la semaine
       if(isset($_POST["choixJourPeriode"]) && $_POST["choixJourPeriode"]!= ""){
-        //restriction des élèves
+        //restriction des réservations
         $req = "INNER JOIN jourperiode ON reservation.idJourPer=jourperiode.idJourPer WHERE jourperiode.idJourPer='".htmlentities($_POST['choixJourPeriode'])."' AND ";  
-        //récupération du level selectionné pour le présélectionner
+        //récupération du jour selectionné pour le présélectionner
         $jourPeriode=htmlentities($_POST['choixJourPeriode']);
       }else{
         $req = "WHERE ";
@@ -40,9 +40,7 @@
             if($key == $jourPeriode){
             
               $JP = $value;
-            }
-            
-          
+            }   
           endforeach;
           unset($value);
     ?>
@@ -62,9 +60,7 @@
             <?php }else{?>
               <option value="<?= $key?>"><?= $value?></option>
               <?php 
-              }
-            
-          
+              }          
           endforeach;
           unset($value); // Détruit la référence sur le dernier élément
         ?>

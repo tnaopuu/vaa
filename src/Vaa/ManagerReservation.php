@@ -17,22 +17,17 @@ class ManagerReservation {
      * @throws \Exception
      */
     public function find (int $id): Reservation {
-        $statement = $this->pdo->query("SELECT * FROM reservation join `placevaa` on placevaa.idPlace=reservation.libellePlaceVaa join `adherent` on adherent.idAdhe=reservation.nom_prenomAdhe WHERE idJourPer = $id LIMIT 1");
+        $statement = $this->pdo->query("SELECT * FROM reservation join `placevaa` on placevaa.idPlace=reservation.idPlaceVaa join `adherent` on adherent.idAdhe=reservation.idAdhe WHERE idJourPer = $id LIMIT 1");
         if($row = $statement->fetch()) {
             
             //appel du constructeur paramétré
-            $reservation = new Reservation(htmlentities($row['nom_prenomAdhe']));
-            
+            $reservation = new Reservation();
             //positionnement de l'id
             $reservation->setId(htmlentities($row['idJourPer']));
-
+            //modifie le libelle Place Vaa positionné par l'idPlaceVaa par le libelle Place Vaa de la table placevaa
             $reservation->setLibellePlaceVaa(htmlentities($row['libellePlace']));
-            
-            if($reservation->getNom_PrenomAdhe () === NULL){
-                $reservation->setNom_PrenomAdhe(htmlentities($row['libellePlace']));
-            }else{
-                $reservation->setNom_PrenomAdhe(htmlentities($row['nomAdhe']));
-            }        
+            //modifie le nom_prenom de l'adhérent positionné par l'idAdhe par le nom_prenom de l'adhérent de la table adherent
+            $reservation->setNom_PrenomAdhe(htmlentities($row['nomPrenomAdhe']));     
 
         }
         if ($row === false) {
@@ -42,17 +37,16 @@ class ManagerReservation {
     }
 
     /**
-     * Sélectionne unvdans la base.
+     * Sélectionne une réservation dans la base en sélectionnant comme critère le jour de la semaine.
      * 
-     * Méthode générique de SELECT qui renvoie un tableau de critere correspondant aux critères de sélection spécifiés.
-     * Si aucun paramètre n'est précisé, la valeur par défaut du paramètre 'WHERE 1' permet d'obtenir tous les critères.
+     * Méthode générique de SELECT qui renvoie un tableau de critere correspondant au critère de sélection spécifié.
      * 
      * @param string Chaîne de caractère devant être une restriction SQL valide.
      * @return array Renvoie un tableau d'objet(s) critere.
      */
-    public function getAll($restriction='WHERE 1')
+    public function getAll($restriction)
     {
-        $query = "select * from `reservation` join `placevaa` on placevaa.idPlace=reservation.libellePlaceVaa join `adherent` on adherent.idAdhe=reservation.nom_prenomAdhe ".$restriction;
+        $query = "select * from `reservation` join `placevaa` on placevaa.idPlace=reservation.idPlaceVaa join `adherent` on adherent.idAdhe=reservation.idAdhe ".$restriction;
         $reservationsList = Array();
 
         //execution de la requete
@@ -69,17 +63,13 @@ class ManagerReservation {
         while ($row = $result->fetch())
         {
             //appel du constructeur paramétré
-            $reservation = new Reservation(htmlentities($row['nom_prenomAdhe']));
+            $reservation = new Reservation();
             //positionnement de l'id
             $reservation->setId(htmlentities($row['idJourPer']));
-            //ajout de l'objet à la fin du tableau
+            //modifie le libelle Place Vaa positionné par l'idPlaceVaa par le libelle Place Vaa de la table placevaa
             $reservation->setLibellePlaceVaa(htmlentities($row['libellePlace']));
-            
-            if($reservation->getNom_PrenomAdhe () === NULL){
-                $reservation->setNom_PrenomAdhe(htmlentities($row['libellePlace']));
-            }else{
-                $reservation->setNom_PrenomAdhe(htmlentities($row['nomAdhe']));
-            }              
+            //modifie le nom_prenom de l'adhérent positionné par l'idAdhe par le nom_prenom de l'adhérent de la table adherent
+            $reservation->setNom_PrenomAdhe(htmlentities($row['nomPrenomAdhe']));   
 
             $reservationsList[] = $reservation;
         }
